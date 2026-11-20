@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chợ Đồ Cũ Chơn Thành</title>
+<meta name="description" content="Chợ đồ cũ Chơn Thành, Bình Phước: đăng bán đồ đã qua sử dụng miễn phí, chỉ trả phí khi bán được.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Cpath d='M4 9l9-6h17v20l-6 9H4z' fill='%23ffd23f'/%3E%3Ccircle cx='12' cy='10' r='2.6' fill='%2323467a'/%3E%3C/svg%3E">
+<style>
+/* VOICE: chợ phiên thân thiện, rõ ràng, đáng tin — nói tiếng người, không màu mè
+   IDEA: thẻ giá treo dây ở sạp đồ cũ; món đã bán bị đóng mộc đỏ
+   PICTURE: lưới thẻ giá (chính là các tin đăng) nằm ngay đầu trang
+   COLOUR and TYPE: vàng thẻ giá, xanh vải jean, đỏ mộc; Be Vietnam Pro 800/400
+   LAYOUT: thanh trên, ô tìm + bộ lọc, lưới thẻ; hộp thoại thành tấm trượt trên điện thoại */
+:root{color-scheme:light dark;--bg:light-dark(#f5f3ee,#121417);--card:light-dark(#fff,#1c1f23);--ink:light-dark(#1b1c1e,#ecebe6);--mute:light-dark(#5f5f59,#a4a39c);--line:light-dark(#e1ddd2,#2f3338);--tag:#ffd23f;--tagd:#f2c200;--tagink:#1b1c1e;--denim:light-dark(#23467a,#94b7ee);--denimbg:#23467a;--stamp:#d6352b;--ok:light-dark(#1d7a4c,#5dd39a);--warn:light-dark(#a35a00,#ffb860)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{line-height:1.1;text-wrap:balance;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--denim);outline-offset:2px}
+.top{background:var(--denimbg);color:#fff;padding:12px max(4vw,14px) 0;position:sticky;top:0;z-index:5}
+.row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1240px;margin:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;flex:1}
+.brand svg{flex:none}
+.btn{min-height:44px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:700}
+.btn.p{background:var(--tag);color:var(--tagink);border-color:var(--tagd)}
+.btn.d{background:var(--stamp);color:#fff;border-color:var(--stamp)}
+.btn.s{min-height:36px;padding:0 12px;font-size:14px;border-radius:10px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.tabs{display:flex;gap:4px;overflow-x:auto;max-width:1240px;margin:10px auto 0;scrollbar-width:none}
+.tabs a{flex:none;color:#dce6f7;text-decoration:none;padding:10px 14px;border-radius:12px 12px 0 0;font-weight:600;font-size:15px}
+.tabs a.on{background:var(--bg);color:var(--ink)}
+main{max-width:1240px;margin:auto;padding:18px max(4vw,14px) 60px}
+.note{background:light-dark(#fff6d6,#2c2711);border:1px solid light-dark(#f0dc8a,#5a4d17);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:15px}
+.filters{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+input,select,textarea{width:100%;min-height:44px;font-size:16px;padding:9px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card)}
+textarea{min-height:110px;resize:vertical}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:thin}
+.chip{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-size:14px;font-weight:600}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{color:var(--mute);font-size:14px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px 14px}
+.tag{position:relative;text-align:left;border:0;padding:0;background:var(--card);border-radius:6px 18px 18px 18px;box-shadow:0 1px 0 var(--line),0 6px 18px light-dark(#0001,#0005);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s}
+.tag:hover{transform:translateY(-2px) rotate(-.4deg)}
+.tag .ph{aspect-ratio:4/3;background:light-dark(#ece8de,#262a2f);display:grid;place-items:center;overflow:hidden}
+.tag .ph img{width:100%;height:100%;object-fit:cover}
+.ini{font-weight:800;font-size:34px;color:var(--mute)}
+.tag .tb{padding:10px 12px 12px;border-top:3px dashed var(--line);display:grid;gap:2px}
+.pr{display:inline-block;justify-self:start;background:var(--tag);color:var(--tagink);font-weight:800;font-size:17px;padding:2px 10px 2px 18px;border-radius:4px 10px 10px 4px;position:relative;white-space:nowrap}
+.pr::before{content:"";position:absolute;left:6px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--card)}
+.tt{font-weight:600;font-size:15px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mt{color:var(--mute);font-size:13px}
+.stampx{position:absolute;top:22%;left:50%;transform:translateX(-50%) rotate(-14deg);border:3px solid var(--stamp);color:var(--stamp);font-weight:800;font-size:22px;padding:2px 12px;border-radius:8px;background:light-dark(#fffc,#000a);letter-spacing:.02em;white-space:nowrap}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:light-dark(#e4ecf8,#22344f);color:var(--denim);white-space:nowrap}
+.badge.g{background:light-dark(#dff3e8,#173426);color:var(--ok)}.badge.w{background:light-dark(#fdebd3,#3a2a12);color:var(--warn)}.badge.r{background:light-dark(#fbe0de,#3d1a18);color:var(--stamp)}
+.tag .corner{position:absolute;top:8px;right:8px}
+.empty{padding:50px 20px;text-align:center;color:var(--mute);border:2px dashed var(--line);border-radius:18px}
+.empty b{display:block;color:var(--ink);font-size:20px;margin-bottom:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.kpi span{display:block;color:var(--mute);font-size:13px}.kpi b{font-size:clamp(18px,2.2vw,26px);white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:13px;color:var(--mute);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.ov{position:fixed;inset:0;background:#0008;display:none;z-index:20;align-items:center;justify-content:center;padding:16px}
+.ov.on{display:flex}
+.sheet{background:var(--bg);width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:20px}
+.sheet h2{font-size:24px;margin-bottom:12px}
+.fld{display:grid;gap:4px;margin-bottom:12px}.fld label{font-weight:600;font-size:14px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hint{color:var(--mute);font-size:13px}
+.feebox{background:var(--tag);color:var(--tagink);border-radius:14px;padding:12px 14px;margin:6px 0 14px;font-weight:600}
+.feebox b{font-size:22px}
+.gal{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}
+.gal img{height:240px;border-radius:12px;flex:none;max-width:100%;object-fit:cover}
+.thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.thumbs img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.contact{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:18px;font-weight:700}
+.closer{float:right;border:0;background:none;font-size:28px;line-height:1;min-width:44px;min-height:44px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;z-index:30;display:none;max-width:90vw}
+.rules h3{margin:18px 0 6px;font-size:19px}.rules li{margin-bottom:4px}
+@media(max-width:700px){.filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.filters input{grid-column:1/-1}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}.ov{align-items:flex-end;padding:0}.sheet{border-radius:20px 20px 0 0;max-height:94vh}.two{grid-template-columns:minmax(0,1fr)}.brand{font-size:17px}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mute)}.stack td:empty{display:none}}
+@media(prefers-reduced-motion:reduce){.tag{transition:none}.tag:hover{transform:none}}
+
+.btn.ghost{background:transparent;color:#fff;border-color:#ffffff55}.btn.wide{width:100%}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0 14px}.chk input{width:22px;min-height:22px;margin-top:2px;flex:none}
+.linkb{border:0;background:none;color:var(--denim);font-weight:700;text-decoration:underline;min-height:44px}
+.h2s{font-size:20px;margin-bottom:8px}.contact{margin-top:8px}.contact a:first-child{color:var(--ink)}
+a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
+@media(max-width:600px){.brand{flex:1 1 100%;font-size:17px}.row1{gap:8px}#who{flex:1}#who .btn{width:100%}}
+footer{max-width:1240px;margin:auto;padding:0 max(4vw,14px) 40px;color:var(--mute);font-size:13px}
+</style></head><body>
+<header class="top"><div class="row1">
+<div class="brand"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 9l9-6h17v20l-6 9H4z" fill="#ffd23f"/><circle cx="12" cy="10" r="2.6" fill="#23467a"/><path d="M12 10C7 4 3 8 2 2" stroke="#fff" stroke-width="1.6" fill="none"/></svg><span id="bname">Chợ Đồ Cũ Chơn Thành</span></div>
+<span id="who"></span><button class="btn p" data-act="post">+ Đăng bán</button></div>
+<nav class="tabs" id="tabs"><a href="#cho" data-v="cho">Chợ</a><a href="#cua-toi" data-v="cua-toi">Tin của tôi</a><a href="#quy-dinh" data-v="quy-dinh">Phí và quy định</a><a href="#quan-tri" data-v="quan-tri" id="tabadmin" hidden>Quản trị</a></nav>
+</header>
+<main id="app"></main>
+<footer>Sàn đang chạy thử. Người đăng chịu trách nhiệm về món hàng của mình; sàn không giữ tiền hàng. Liên hệ quản trị qua mục Báo vi phạm.</footer>
+<div class="ov" id="ov"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast"></div>
+<script src="supabase.min.js"></script>
+<script src="app.js"></script>
+</body></html>
